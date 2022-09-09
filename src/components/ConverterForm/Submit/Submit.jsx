@@ -6,7 +6,7 @@ export const Submit = ({ exchange, amount }) => {
       {Object.keys(exchange).length === 0 ? (
         <div className={css.SubmitItem}>
           <p className={css.SubmitText}>
-            &nbsp; This conversion uses midmarket rates!
+            &#8520; This conversion uses midmarket rates!
           </p>
         </div>
       ) : (

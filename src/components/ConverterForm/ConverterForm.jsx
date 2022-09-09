@@ -17,6 +17,7 @@ const CONVERSTION_URL = process.env.REACT_APP.CONVERSTION_URL;
 export const ConverterForm = () => {
   const [selectedFrom, setSelectedFrom] = useState(null);
   const [selectedTo, setSelectedTo] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [allList, setAllList] = useState([]);
   const [amount, setAmount] = useState(1);
   const [exchange, setExchange] = useState({});
