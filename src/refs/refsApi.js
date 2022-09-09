@@ -14,4 +14,5 @@ const api = {
   CURRENCY_HOUR_URL,
 };
 
+console.log(USERNAME, api);
 export default api;

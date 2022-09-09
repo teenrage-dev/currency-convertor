@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import * as api from '../../refs/refsApi';
-console.log(api.default.USERNAME);
 
 export const ConverterHeader = () => {
   const [rateCurrency, setRateCurrency] = useState([]);
