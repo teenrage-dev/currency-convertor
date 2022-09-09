@@ -1,5 +1,5 @@
 import css from './ConverterForm.module.css';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { RotatingLines } from 'react-loader-spinner';
@@ -7,7 +7,6 @@ import { RotatingLines } from 'react-loader-spinner';
 import axios from 'axios';
 import { Submit } from './Submit/Submit';
 import { Form } from './Form/Form';
-import { useCallback } from 'react';
 
 const USERNAME = 'teenrage865500690';
 const PASSWORD = 'nma0t2stkcis2vgvpsn0pg91ed';
@@ -23,6 +22,13 @@ export const ConverterForm = () => {
   const [exchange, setExchange] = useState({});
   const [isLoaded, setIsLoaded] = useState(true);
   const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    mapCurrencyData();
+
+    // return () => mapCurrencyData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Get Currency Data
   async function getCurrencyData() {
@@ -68,6 +74,7 @@ export const ConverterForm = () => {
           // flag: flag,
         };
       }
+      console.log(allList);
       return { ...obj };
     });
 
@@ -96,12 +103,6 @@ export const ConverterForm = () => {
       setIsLoaded(false);
     }
   };
-
-  useEffect(() => {
-    mapCurrencyData();
-
-    // return () => mapCurrencyData();
-  }, []);
 
   // Submit Form
   const onSubmit = async e => {
