@@ -1,0 +1,73 @@
+.Box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.Item {
+  display: flex;
+  flex-direction: column;
+}
+.ItemIcon {
+  margin-top: 15px;
+}
+
+.IconBox {
+  border-radius: 50%;
+  border: 1px solid #303030;
+  padding: 10px 6px;
+}
+
+.Btn {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.IconBox:hover,
+.IconBox:focus {
+  border-color: #5ccc6fd2;
+}
+
+.Text {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.Input {
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 38px;
+  outline: 0 !important;
+  position: relative;
+  transition: all 100ms;
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-top: 2px;
+  font-size: 15px;
+}
+
+.Input:hover {
+  border-color: #5ccc6fd2;
+  box-shadow: 0 0 0 1px #5ccc6fd2;
+}
+
+.Input::placeholder {
+  color: #333333;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}

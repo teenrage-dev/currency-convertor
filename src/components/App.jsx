@@ -1,16 +1,11 @@
+import { ConverterForm } from './ConverterForm/ConverterForm';
+import { ConverterHeader } from './ConverterHeader/ConverterHeader';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <ConverterHeader />
+      <ConverterForm />
     </div>
   );
 };

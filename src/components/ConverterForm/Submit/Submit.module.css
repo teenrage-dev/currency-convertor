@@ -1,0 +1,21 @@
+/*    -----------------------SubmitContainer-------------------     */
+
+.SubmitContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.SubmitBtn {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5ccc6f;
+  color: #333333;
+  cursor: pointer;
+}
+
+.SubmitBtnDisabled {
+  opacity: 0.5;
+}

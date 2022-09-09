@@ -1,0 +1,32 @@
+.Loader {
+  background-color: #03030357;
+  opacity: 0.9;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*----------------------------------------FORM-----------------------------------------*/
+
+.FormContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.Wrapper {
+  padding: 20px;
+  box-shadow: 0 0 0 1px #ccc;
+  width: 100%;
+  max-width: fit-content;
+}
+
+.Title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #030303;
+}

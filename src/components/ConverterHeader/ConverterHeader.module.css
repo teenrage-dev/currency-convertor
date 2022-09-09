@@ -1,0 +1,66 @@
+.Header {
+  background-color: #030303d3;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.List {
+  display: flex;
+  justify-content: center;
+}
+
+.Item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.ItemWraper {
+  display: flex;
+  align-items: center;
+}
+
+.Title {
+  margin-right: 5px;
+  font-size: 20px;
+  color: #f0f0f0;
+}
+
+.Text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #70e465d3;
+  margin-right: 5px;
+}
+
+.FadeInLeftBig {
+  -webkit-animation-name: fadeInLeftBig;
+  animation-name: fadeInLeftBig;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInLeftBig {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInLeftBig {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
