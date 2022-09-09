@@ -1,0 +1,17 @@
+const USERNAME = process.env.REACT_APP_USERNAME;
+const PASSWORD = process.env.REACT_APP_PASSWORD;
+const CURRENCY_URL = process.env.REACT_APP_CURRENCY_URL;
+const COUNTRIES_URL = process.env.REACT_APP_COUNTRIES_URL;
+const CONVERSTION_URL = process.env.REACT_APP_CONVERSTION_URL;
+const CURRENCY_HOUR_URL = process.env.REACT_APP_CURRENCY_HOUR_URL;
+
+const api = {
+  USERNAME,
+  PASSWORD,
+  CURRENCY_URL,
+  COUNTRIES_URL,
+  CONVERSTION_URL,
+  CURRENCY_HOUR_URL,
+};
+
+export default api;

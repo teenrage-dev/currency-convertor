@@ -1,3 +1,7 @@
+// TODOS add a flag to each country in the list
+// TODOS fix in the input so that 0 is added before the comma
+// TODOS make an adaptive site
+
 import css from './ConverterForm.module.css';
 import { useEffect, useState } from 'react';
 
@@ -8,11 +12,7 @@ import axios from 'axios';
 import { Submit } from './Submit/Submit';
 import { Form } from './Form/Form';
 
-const USERNAME = process.env.REACT_APP.USERNAME;
-const PASSWORD = process.env.REACT_APP.PASSWORD;
-const CURRENCY_URL = process.env.REACT_APP.CURRENCY_URL;
-const COUNTRIES_URL = process.env.REACT_APP.COUNTRIES_URL;
-const CONVERSTION_URL = process.env.REACT_APP.CONVERSTION_URL;
+import * as api from '../../refs/refsApi';
 
 export const ConverterForm = () => {
   const [selectedFrom, setSelectedFrom] = useState(null);
@@ -76,10 +76,10 @@ export const ConverterForm = () => {
   // Get Currency Data
   async function getCurrencyData() {
     try {
-      const response = await axios.get(CURRENCY_URL, {
+      const response = await axios.get(api.default.CURRENCY_URL, {
         auth: {
-          username: USERNAME,
-          password: PASSWORD,
+          username: api.default.USERNAME,
+          password: api.default.PASSWORD,
         },
       });
       const currencies = await response.data;
@@ -92,7 +92,7 @@ export const ConverterForm = () => {
   // Get Countries Data
   async function getCountriesData() {
     try {
-      const response = await axios.get(COUNTRIES_URL);
+      const response = await axios.get(api.default.COUNTRIES_URL);
       const flags = await response.data;
       return flags;
     } catch (err) {
@@ -106,11 +106,11 @@ export const ConverterForm = () => {
 
     try {
       const response = await axios.get(
-        `${CONVERSTION_URL}from=${selectedFrom.value}&to=${selectedTo.value}&amount=${amount}&decimal_places=2`,
+        `${api.default.CONVERSTION_URL}from=${selectedFrom.value}&to=${selectedTo.value}&amount=${amount}&decimal_places=2`,
         {
           auth: {
-            username: USERNAME,
-            password: PASSWORD,
+            username: api.default.USERNAME,
+            password: api.default.PASSWORD,
           },
         }
       );
@@ -132,9 +132,6 @@ export const ConverterForm = () => {
     if (Number(e.target.value) === 0) {
       setAmount('');
       return;
-    }
-    if (e.target.value === ',') {
-      console.log('working');
     }
 
     setAmount(Number(e.target.value));
@@ -172,7 +169,12 @@ export const ConverterForm = () => {
                 options={options}
                 onClick={onClick}
               />
-              <Submit exchange={exchange} amount={amount} />
+              <Submit
+                exchange={exchange}
+                amount={amount}
+                selectedFrom={selectedFrom}
+                selectedTo={selectedTo}
+              />
             </form>
           </div>
           <Toaster position="top-right" reverseOrder={false} />

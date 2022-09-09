@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { nanoid } from 'nanoid';
 import axios from 'axios';
-
-const USERNAME = process.env.REACT_APP.USERNAME;
-const PASSWORD = process.env.REACT_APP.PASSWORD;
-const CURRENCY_HOUR_URL = process.env.REACT_APP.CURRENCY_HOUR_URL;
+import * as api from '../../refs/refsApi';
+console.log(api.default.USERNAME);
 
 export const ConverterHeader = () => {
   const [rateCurrency, setRateCurrency] = useState([]);
@@ -15,11 +13,11 @@ export const ConverterHeader = () => {
   useEffect(() => {
     const fetchRateCurrency = async currency => {
       const response = await axios.get(
-        `${CURRENCY_HOUR_URL}from=${currency}&to=UAH&amount=1&interval=hourly&page=1&per_page=2&decimal_places=2`,
+        `${api.default.CURRENCY_HOUR_URL}from=${currency}&to=UAH&amount=1&interval=hourly&page=1&per_page=2&decimal_places=2`,
         {
           auth: {
-            username: USERNAME,
-            password: PASSWORD,
+            username: api.default.USERNAME,
+            password: api.default.PASSWORD,
           },
         }
       );
