@@ -4,6 +4,14 @@ on:
   push:
     branches: [main]
 
+env:
+  REACT_APP_USERNAME: teenrage865500690
+  REACT_APP_PASSWORD: nma0t2stkcis2vgvpsn0pg91ed
+  REACT_APP_CURRENCY_URL: https://xecdapi.xe.com/v1/currencies
+  REACT_APP_COUNTRIES_URL: https://restcountries.com/v3.1/all
+  REACT_APP_CONVERSTION_URL: https://xecdapi.xe.com/v1/convert_from?
+  REACT_APP_CURRENCY_HOUR_URL: https://xecdapi.xe.com/v1/historic_rate/period?
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
