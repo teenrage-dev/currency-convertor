@@ -8,11 +8,11 @@ import axios from 'axios';
 import { Submit } from './Submit/Submit';
 import { Form } from './Form/Form';
 
-const USERNAME = 'teenrage865500690';
-const PASSWORD = 'nma0t2stkcis2vgvpsn0pg91ed';
-const CURRENCY_URL = 'https://xecdapi.xe.com/v1/currencies';
-const COUNTRIES_URL = 'https://restcountries.com/v3.1/all';
-const CONVERSTION_URL = 'https://xecdapi.xe.com/v1/convert_from?';
+const USERNAME = process.env.REACT_APP.USERNAME;
+const PASSWORD = process.env.REACT_APP.PASSWORD;
+const CURRENCY_URL = process.env.REACT_APP.CURRENCY_URL;
+const COUNTRIES_URL = process.env.REACT_APP.COUNTRIES_URL;
+const CONVERSTION_URL = process.env.REACT_APP.CONVERSTION_URL;
 
 export const ConverterForm = () => {
   const [selectedFrom, setSelectedFrom] = useState(null);
@@ -24,10 +24,52 @@ export const ConverterForm = () => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    mapCurrencyData();
+    const mapCurrencyData = async () => {
+      const currencyData = await getCurrencyData();
+      const countriesData = await getCountriesData();
+      let countryListWithFlag = currencyData.currencies?.map(obj => {
+        let countryFlag = countriesData.find(country => {
+          if (country.currencies) {
+            return Object.keys(country.currencies)[0] === obj.iso;
+          }
+          return false;
+        });
+        if (!countryFlag) {
+          return {
+            ...obj,
+            // flag: flag,
+          };
+        }
 
-    // return () => mapCurrencyData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        return { ...obj };
+      });
+
+      if (countryListWithFlag.length > 0) {
+        setOptions(
+          countryListWithFlag.map(obj => {
+            if (obj.iso === 'UAH') {
+              setSelectedFrom({
+                value: obj.iso,
+                label: obj.currency_name,
+              });
+            }
+            if (obj.iso === 'USD') {
+              setSelectedTo({
+                value: obj.iso,
+                label: obj.currency_name,
+              });
+            }
+            return {
+              value: obj.iso,
+              label: obj.currency_name,
+            };
+          })
+        );
+        setAllList(countryListWithFlag);
+        setIsLoaded(false);
+      }
+    };
+    mapCurrencyData();
   }, []);
 
   // Get Currency Data
@@ -56,53 +98,6 @@ export const ConverterForm = () => {
       toast.error(`Unable to fetch country flags: ${err}`);
     }
   }
-
-  // Get Currency Data in inputs
-  const mapCurrencyData = async () => {
-    const currencyData = await getCurrencyData();
-    const countriesData = await getCountriesData();
-    let countryListWithFlag = currencyData.currencies?.map(obj => {
-      let countryFlag = countriesData.find(country => {
-        if (country.currencies) {
-          return Object.keys(country.currencies)[0] === obj.iso;
-        }
-        return false;
-      });
-      if (!countryFlag) {
-        return {
-          ...obj,
-          // flag: flag,
-        };
-      }
-      console.log(allList);
-      return { ...obj };
-    });
-
-    if (countryListWithFlag.length > 0) {
-      setOptions(
-        countryListWithFlag.map(obj => {
-          if (obj.iso === 'UAH') {
-            setSelectedFrom({
-              value: obj.iso,
-              label: obj.currency_name,
-            });
-          }
-          if (obj.iso === 'USD') {
-            setSelectedTo({
-              value: obj.iso,
-              label: obj.currency_name,
-            });
-          }
-          return {
-            value: obj.iso,
-            label: obj.currency_name,
-          };
-        })
-      );
-      setAllList(countryListWithFlag);
-      setIsLoaded(false);
-    }
-  };
 
   // Submit Form
   const onSubmit = async e => {

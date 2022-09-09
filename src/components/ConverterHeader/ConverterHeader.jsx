@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 
-const USERNAME = 'teenrage865500690';
-const PASSWORD = 'nma0t2stkcis2vgvpsn0pg91ed';
-const CURRENCY_HOUR_URL = 'https://xecdapi.xe.com/v1/historic_rate/period?';
+const USERNAME = process.env.REACT_APP.USERNAME;
+const PASSWORD = process.env.REACT_APP.PASSWORD;
+const CURRENCY_HOUR_URL = process.env.REACT_APP.CURRENCY_HOUR_URL;
 
 export const ConverterHeader = () => {
   const [rateCurrency, setRateCurrency] = useState([]);
